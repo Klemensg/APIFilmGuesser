@@ -19,31 +19,29 @@ db.once('open', function() {
 
 const findFilm = async id => {
     const film = await Film.findOne({id}).select('-__v').select('-_id')
+    console.log(film)
     return film
 }
-
+const findAllFilms = async id => {
+    const film = await Film.find({}).select('-__v').select('-_id')
+    console.log(film)
+    return film
+}
 const createFilm = async filmData => {
     const film = await Film.create(filmData)
     return film
 }
-
 //createFilm({id:4,nom:"jure",country_id:55,iddb:82})
 
-app.get('/parkings/:id&apikey=:key', async(req,res) => {
-    
-    const key = parseInt(req.params.key)
-    console.log(key)
-    console.log(req.params.id)
-    
-    if(key==123456789){//MDR ça c'est un test pour l'instant
+app.get('/film/:id', async(req,res) => {
         const id = parseInt(req.params.id)
         res.status(200).json(await findFilm(id))
-    }else{
-        res.send("Invalid key")
-    }
 })
 
-
+app.get('/films', async(req,res) => {
+    const id = parseInt(req.params.id)
+    res.status(200).json(await findAllFilms(id))
+})
 
 
 app.listen(8080, () => {
