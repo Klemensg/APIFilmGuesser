@@ -19,12 +19,10 @@ db.once('open', function() {
 
 const findFilm = async id => {
     const film = await Film.findOne({id}).select('-__v').select('-_id')
-    console.log(film)
     return film
 }
 const findAllFilms = async id => {
     const film = await Film.find({}).select('-__v').select('-_id')
-    console.log(film)
     return film
 }
 const createFilm = async filmData => {
