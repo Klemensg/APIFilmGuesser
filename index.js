@@ -36,7 +36,8 @@ app.get('/film/:id', async(req,res) => {
         console.log(id)
         if(!isNaN(id))
             res.status(200).json(await findFilm(id))
-        res.send("invalid ID")
+        else
+            res.send("Not INT ID")
 })
 
 app.get('/films', async(req,res) => {
