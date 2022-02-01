@@ -33,7 +33,10 @@ const createFilm = async filmData => {
 
 app.get('/film/:id', async(req,res) => {
         const id = parseInt(req.params.id)
-        res.status(200).json(await findFilm(id))
+        console.log(id)
+        if(!isNaN(id))
+            res.status(200).json(await findFilm(id))
+        res.send("invalid ID")
 })
 
 app.get('/films', async(req,res) => {
