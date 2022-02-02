@@ -54,20 +54,21 @@ createFilm({id:20,nom:"Fucking Âmâl",country_id:0,iddb:0})
 createFilm({id:21,nom:"2016",country_id:0,iddb:0})
 */
 
-app.get('/film/:id', async(req,res) => {
-        const id = parseInt(req.params.id)
+app.get('/film', async(req,res) => {
+        const id = parseInt(req.query.id)
         if(!isNaN(id))
             res.status(200).json(await findFilm(id))
         else
-            res.send("Not INT ID")
+            res.status(200).json("Invalid ID")
 })
 
+
 app.get('/films', async(req,res) => {
-    const id = parseInt(req.params.id)
+    const id = parseInt(req.query.id)
     res.status(200).json(await findAllFilms(id))
 })
 
 
 app.listen(8080, () => {
-    console.log('Ser v eur à l\'écoute')
+    console.log('Serveur à l\'écoute')
   })
