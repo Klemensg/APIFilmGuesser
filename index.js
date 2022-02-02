@@ -29,6 +29,11 @@ const createFilm = async filmData => {
     const film = await Film.create(filmData)
     return film
 }
+const removeFilm = async id => {
+    const film = await Film.deleteOne({id:id})
+    return film
+}
+//removeFilm(111)
 /*
 createFilm({id:0,nom:"Les gendarmes à saint Tropez",country_id:0,iddb:0})
 createFilm({id:1,nom:"Iron man",country_id:0,iddb:0})
@@ -66,6 +71,20 @@ app.get('/film', async(req,res) => {
 app.get('/films', async(req,res) => {
     const id = parseInt(req.query.id)
     res.status(200).json(await findAllFilms(id))
+})
+
+
+app.post('/films', async(req,res) => {
+    console.log(req.body)
+    res.status(200).json(await createFilm(req.body))
+})
+
+app.delete('/film', async(req,res) => {
+    const id = parseInt(req.query.id)
+    if(!isNaN(id))
+            res.status(200).json(await removeFilm(id))
+        else
+            res.status(200).json("Invalid ID")
 })
 
 
