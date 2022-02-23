@@ -2,7 +2,7 @@ var mongoose = require('mongoose')
 const filmSchema = new mongoose.Schema({
     id: Number,
     nom: String,
-    country: String,
+    country_id: Number,
     iddb: Number
 })
 
