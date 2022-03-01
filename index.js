@@ -66,11 +66,7 @@ app.delete('/film', async(req,res) => {
 
 
 
-
-
-
-
-
+//Pays API
 
 const findPays = async id => {
     const pays = await Pays.findOne({id}).select('-__v').select('-_id')
