@@ -26,6 +26,11 @@ const findAllFilms = async id => {
     const film = await Film.find({}).select('-__v').select('-_id')
     return film
 }
+const randomFilms = async id => {
+    const count = await db.collection('films').count()
+    const film = await Film.find().limit(1).skip(Math.random()*count).select('-__v').select('-_id')
+    return film
+}
 const createFilm = async filmData => {
     const film = await Film.create(filmData)
     return film
@@ -48,6 +53,11 @@ app.get('/film', async(req,res) => {
 app.get('/films', async(req,res) => {
     const id = parseInt(req.query.id)
     res.status(200).json(await findAllFilms(id))
+})
+
+app.get('/rfilms', async(req, res) => {
+    const id = parseInt(req.query.id)
+    res.status(200).json(await randomFilms(id))
 })
 
 
