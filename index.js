@@ -8,7 +8,6 @@ dotenv.config()
 
 const MongoClient = require('mongodb').MongoClient
 
-
 app.use(express.json())
 
 mongoose.connect(process.env.BDD_CONNECT)
